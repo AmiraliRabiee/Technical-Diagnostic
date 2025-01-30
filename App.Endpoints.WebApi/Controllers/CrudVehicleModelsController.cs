@@ -66,7 +66,6 @@ namespace App.Endpoints.WebApi.Controllers
                 return "Vehicle model not found.";
             }
 
-            //Console.WriteLine($"{vehicle.Name}");
             model.Id = id;
             var result = _vehicleModelAppService.UpdateVehicleModel(model);
 
