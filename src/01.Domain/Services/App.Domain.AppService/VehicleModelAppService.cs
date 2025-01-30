@@ -2,14 +2,16 @@
 using App.Domain.Core.Contracts.Service;
 using App.Domain.Core.Entities;
 using App.Domain.Core.Entities.Base;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace App.Domain.AppService
 {
     public class VehicleModelAppService(IVehicleModelService modelService) : IVehicleModelAppService
     {
-        public Result CreateVehicleModel(VehicleModel vehicleModel)
+        public async Task<Result> CreateVehicleModel(VehicleModel vehicleModel)
         {
-            var result = modelService.Create(vehicleModel);
+            var result = await modelService.Create(vehicleModel);
             if (result)
             {
                 return new Result { IsSuccess = true, Message = "با موفقیت ثبت شد" };
@@ -17,40 +19,42 @@ namespace App.Domain.AppService
             return new Result { IsSuccess = false, Message = "عملیات با خطا مواجه شد" };
         }
 
-        public Result DeleteVehicleModel(int id)
+        public async Task<Result> DeleteVehicleModel(int id)
         {
-            var model = modelService.GetById(id);
-            if (model is null) return new Result { IsSuccess = false, Message = "مدلی با این شناسه پیدا نشد" };
+            var model = await modelService.GetById(id);
+            if (model is null)
+                return new Result { IsSuccess = false, Message = "مدلی با این شناسه پیدا نشد" };
 
-            var result = modelService.Delete(id);
+            var result = await modelService.Delete(id);
             if (result)
             {
                 return new Result { IsSuccess = true, Message = "با موفقیت حذف شد" };
             }
             return new Result { IsSuccess = false, Message = "عملیات با خطا مواجه شد" };
+        }
 
-        }
-        public List<VehicleModel> GetAllVehicleModels()
+        public async Task<List<VehicleModel>> GetAllVehicleModels()
         {
-            return modelService.GetAll();
+            return await modelService.GetAll();
         }
-        public VehicleModel GetVehicleModel(int id)
-        {
-            var model = modelService.GetById(id);
-            return model;
-        }
-        public Result UpdateVehicleModel(VehicleModel vehicleModel)
-        {
-            var existingModel = modelService.GetById(vehicleModel.Id);
-                if (existingModel is null) return new Result { IsSuccess = false, Message = "مدلی با این شناسه پیدا نشد" };
 
-            var result = modelService.Update(vehicleModel);
+        public async Task<VehicleModel> GetVehicleModel(int id)
+        {
+            return await modelService.GetById(id);
+        }
+
+        public async Task<Result> UpdateVehicleModel(VehicleModel vehicleModel)
+        {
+            var existingModel = await modelService.GetById(vehicleModel.Id);
+            if (existingModel is null)
+                return new Result { IsSuccess = false, Message = "مدلی با این شناسه پیدا نشد" };
+
+            var result = await modelService.Update(vehicleModel);
             if (result)
             {
                 return new Result { IsSuccess = true, Message = "با موفقیت بروزرسانی شد" };
             }
             return new Result { IsSuccess = false, Message = "عملیات با خطا مواجه شد" };
-
         }
     }
 }

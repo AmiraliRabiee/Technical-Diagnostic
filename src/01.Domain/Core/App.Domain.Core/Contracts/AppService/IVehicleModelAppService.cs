@@ -11,11 +11,11 @@ namespace App.Domain.Core.Contracts.AppService
     public interface IVehicleModelAppService
     {
         //cw crud
-        VehicleModel GetVehicleModel(int id);
-        List<VehicleModel> GetAllVehicleModels();   
-        Result CreateVehicleModel(VehicleModel vehicleModel);
-        Result UpdateVehicleModel(VehicleModel vehicleModel);
-        Result DeleteVehicleModel(int id);
+        Task<VehicleModel> GetVehicleModel(int id);
+        Task<List<VehicleModel>> GetAllVehicleModels();   
+        Task<Result> CreateVehicleModel(VehicleModel vehicleModel);
+        Task<Result> UpdateVehicleModel(VehicleModel vehicleModel);
+        Task<Result> DeleteVehicleModel(int id);
 
     }
 }

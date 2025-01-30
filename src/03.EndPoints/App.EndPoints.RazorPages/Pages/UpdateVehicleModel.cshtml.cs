@@ -11,9 +11,9 @@ namespace App.EndPoints.RazorPages.Pages
         public VehicleModel VehicleModel { get; set; }
         public string ResultMessage { get; set; }
         public bool IsSuccess { get; set; }
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsunc(int id)
         {
-            VehicleModel = vehicleModelApp.GetVehicleModel(id);
+            VehicleModel = await vehicleModelApp.GetVehicleModel(id);
             if (VehicleModel == null)
             {
                 return RedirectToPage("/ModelManager");
@@ -21,9 +21,9 @@ namespace App.EndPoints.RazorPages.Pages
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            var result = vehicleModelApp.UpdateVehicleModel(VehicleModel);
+            var result = await vehicleModelApp.UpdateVehicleModel(VehicleModel);
             if (result.IsSuccess)
             {
                 ResultMessage = result.Message;

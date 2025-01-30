@@ -12,7 +12,7 @@ namespace App.EndPoints.RazorPages.Pages
         public void OnGet()
         {
         } 
-        public IActionResult OnPost(string name)
+        public async Task<IActionResult> OnPostAsync(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -23,7 +23,7 @@ namespace App.EndPoints.RazorPages.Pages
 
             var vehicleModel = new VehicleModel { Name = name };
 
-            var result = vehicleModelApp.CreateVehicleModel(vehicleModel);
+            var result = await vehicleModelApp.CreateVehicleModel(vehicleModel);
 
             if (result.IsSuccess)
             {

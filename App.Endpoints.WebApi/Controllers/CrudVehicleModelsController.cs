@@ -22,55 +22,72 @@ namespace App.Endpoints.WebApi.Controllers
         #endregion
 
         [HttpPost("Add-VehicleModel")]
-        public string AddVehicleModel([FromHeader] string apiKey, [FromBody] VehicleModel model)
+        public async Task<IActionResult> AddVehicleModel([FromQuery] string apiKey
+            , [FromBody] Domain.Core.Entities.VehicleModel model)
         {
             if (apiKey != _apiKey)
             {
-                return "Invalid API Key.";
+                return Unauthorized("Invalid API Key.");
             }
 
-            var result = _vehicleModelAppService.CreateVehicleModel(model);
-            return result.Message;
+            if (model == null)
+            {
+                return BadRequest("Invalid model data.");
+            }
+            var result = await _vehicleModelAppService.CreateVehicleModel(model);
+
+            if (result.IsSuccess)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
         }
 
 
         [HttpDelete("Delete-VehicleModel/{id}")]
-        public string DeleteModel([FromHeader] string apiKey, int id)
+        public async Task<IActionResult> DeleteModel([FromQuery] string apiKey, int id)
         {
             if (apiKey != _apiKey)
             {
-                return "Invalid API Key.";
+                return Unauthorized("Invalid API Key.");
             }
+            var result = await _vehicleModelAppService.DeleteVehicleModel(id);
 
-            var result = _vehicleModelAppService.DeleteVehicleModel(id);
-            return result.Message;
+            if (result.IsSuccess)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message); 
         }
+
 
         [HttpGet("Get-DetailsOfModels")]
-        public List<VehicleModel> ShowModels([FromHeader] string apiKey)
+        public async Task<List<VehicleModel>> ShowModelsAsync([FromHeader] string apiKey)
         {
-            return _vehicleModelAppService.GetAllVehicleModels() ?? new List<VehicleModel>();
+            return await _vehicleModelAppService.GetAllVehicleModels() ?? new List<VehicleModel>();
         }
 
-        [HttpPut("Update-DetailsOfModel")]
-        public string UpdateModel([FromHeader] string apiKey, int id, [FromBody] VehicleModel model)
+
+        [HttpPost("Update-DetailsOfModel")]
+        public async Task<ActionResult<string>> UpdateModel([FromQuery] string apiKey, [FromBody] VehicleModel model)
         {
             if (apiKey != _apiKey)
             {
-                return "Invalid API Key.";
+                return Unauthorized("Invalid API Key.");
             }
 
-            var vehicle = _vehicleModelAppService.GetVehicleModel(id);
-            if (vehicle == null)
+            if (model == null)
             {
-                return "Vehicle model not found.";
+                return BadRequest("Invalid model data.");
             }
 
-            model.Id = id;
-            var result = _vehicleModelAppService.UpdateVehicleModel(model);
+            var result = await _vehicleModelAppService.UpdateVehicleModel(model);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Message);
+            }
 
-            return result.Message;
+            return BadRequest(result.Message);
         }
-
     }
 }

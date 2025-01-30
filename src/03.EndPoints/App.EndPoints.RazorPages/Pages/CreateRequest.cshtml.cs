@@ -15,9 +15,9 @@ namespace App.EndPoints.RazorPages.Pages
         public string ResultMessage { get; set; } = string.Empty;
         public bool IsSuccess { get; set; } = false;
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Models = modelAppService.GetAllVehicleModels(); 
+            Models = await modelAppService.GetAllVehicleModels();
         }
 
         public IActionResult OnPost()

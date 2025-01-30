@@ -6,29 +6,29 @@ namespace App.Domain.Service
 {
     public class VehicleModelService(IVehicleModelRepository modelRepository) : IVehicleModelService
     {
-        public bool Create(VehicleModel vehicleModel)
+        public async Task<bool> Create(VehicleModel vehicleModel)
         {
-            return modelRepository.Create(vehicleModel);    
+            return await modelRepository.Create(vehicleModel);    
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            return modelRepository.Delete(id);
+            return await modelRepository.Delete(id);
         }
 
-        public List<VehicleModel> GetAll()
+        public async Task<List<VehicleModel>> GetAll()
         {
-            return modelRepository.GetAll();
+            return await modelRepository.GetAll();
         }
 
-        public VehicleModel GetById(int id)
+        public async Task<VehicleModel> GetById(int id)
         {
-            return modelRepository.GetById(id);
+            return await modelRepository.GetById(id);
         }
 
-        public bool Update(VehicleModel vehicleModel)
+        public async Task<bool> Update(VehicleModel vehicleModel)
         {
-            return modelRepository.Update(vehicleModel);        
+            return await modelRepository.Update(vehicleModel);        
         }
     }
 }
