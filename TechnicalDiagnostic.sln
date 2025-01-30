@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.EndPoints.RazorPages", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infrastructure.InMemoryDb", "src\02.Infrastructure\App.Infrastructure.InMemoryDb\App.Infrastructure.InMemoryDb.csproj", "{E53EAFB2-6FD7-40C9-B79F-D9EBB1BD1FB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Endpoints.WebApi", "App.Endpoints.WebApi\App.Endpoints.WebApi.csproj", "{A20B4F14-E101-4560-982C-83E6B77B7CC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{E53EAFB2-6FD7-40C9-B79F-D9EBB1BD1FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E53EAFB2-6FD7-40C9-B79F-D9EBB1BD1FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E53EAFB2-6FD7-40C9-B79F-D9EBB1BD1FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20B4F14-E101-4560-982C-83E6B77B7CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20B4F14-E101-4560-982C-83E6B77B7CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20B4F14-E101-4560-982C-83E6B77B7CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20B4F14-E101-4560-982C-83E6B77B7CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,5 +79,6 @@ Global
 		{40CC03C5-A878-4832-8E5C-9B69684A49C7} = {102074C8-84B8-4578-A97D-02F87E7A598B}
 		{CB58F597-D454-4D9A-A542-B23E52F49CDE} = {9B22DB8A-11EF-49E1-89C7-5E3E3DF7253D}
 		{E53EAFB2-6FD7-40C9-B79F-D9EBB1BD1FB0} = {102074C8-84B8-4578-A97D-02F87E7A598B}
+		{A20B4F14-E101-4560-982C-83E6B77B7CC9} = {9B22DB8A-11EF-49E1-89C7-5E3E3DF7253D}
 	EndGlobalSection
 EndGlobal

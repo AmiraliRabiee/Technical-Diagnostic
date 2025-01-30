@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250123203140_init")]
+    [Migration("20250130181457_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -180,17 +180,12 @@ namespace App.Infrastructure.EFCore.Migrations
             modelBuilder.Entity("App.Domain.Core.Entities.Request", b =>
                 {
                     b.HasOne("App.Domain.Core.Entities.VehicleModel", "VehicleModel")
-                        .WithMany("Requests")
+                        .WithMany()
                         .HasForeignKey("VehicleModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("VehicleModel");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Entities.VehicleModel", b =>
-                {
-                    b.Navigation("Requests");
                 });
 #pragma warning restore 612, 618
         }

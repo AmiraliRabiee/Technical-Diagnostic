@@ -177,17 +177,12 @@ namespace App.Infrastructure.EFCore.Migrations
             modelBuilder.Entity("App.Domain.Core.Entities.Request", b =>
                 {
                     b.HasOne("App.Domain.Core.Entities.VehicleModel", "VehicleModel")
-                        .WithMany("Requests")
+                        .WithMany()
                         .HasForeignKey("VehicleModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("VehicleModel");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Entities.VehicleModel", b =>
-                {
-                    b.Navigation("Requests");
                 });
 #pragma warning restore 612, 618
         }
